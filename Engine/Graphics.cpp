@@ -316,6 +316,52 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
+void Graphics::DrowRect(int x, int y, int width, int height, Color c)
+{
+	assert(x >= 0);
+	assert(x < int(Graphics::ScreenWidth));
+	assert(y >= 0);
+	assert(y < int(Graphics::ScreenHeight));
+
+	for (int i = 0; i < width; i++)
+	{
+		for (int j = 0; j < height; j++)
+		{
+			PutPixel(x + i, y + j, c);
+		}
+	}
+}
+
+void Graphics::DrowRectPos(int x0, int y0, int x1, int y1, Color c)
+{
+	DrowRect(x0, y0, abs(x1 - x0), abs(y1 - y0), c);
+}
+
+void Graphics::DrowCircle(int x, int y, int r, Color c)
+{
+	assert(x >= 0);
+	assert(x < int(Graphics::ScreenWidth));
+	assert(y >= 0);
+	assert(y < int(Graphics::ScreenHeight));
+
+	r = abs(r);
+
+	int cx = x + r;
+	int cy = y + r;
+
+	for (int i = -r; i <= r; i++)
+	{
+		for (int j = -r; j <= r; j++)
+		{
+			if (i * i + j * j <= r * r)
+			{
+				PutPixel(cx + i, cy + j, c);
+			}
+		}
+	}
+
+
+}
 
 //////////////////////////////////////////////////
 //           Graphics Exception

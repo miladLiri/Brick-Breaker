@@ -24,7 +24,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	skate(200)
 {
 }
 
@@ -38,8 +39,10 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	skate.update(wnd);
 }
 
 void Game::ComposeFrame()
 {
+	skate.drow(gfx);
 }
