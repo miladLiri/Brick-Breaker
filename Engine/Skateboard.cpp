@@ -36,8 +36,17 @@ void Skateboard::clampScreen()
 	}
 }
 
-void Skateboard::update(const MainWindow& wnd)
+void Skateboard::ballCollision(Ball& ball) const
+{
+	if(ball.getBottom() >= y && ball.getLeft() >= x && ball.getRight() <= x + width)
+	{
+		ball.resetvy();
+	}
+}
+
+void Skateboard::update(const MainWindow& wnd, Ball& ball)
 {
 	control(wnd);
 	clampScreen();
+	ballCollision(ball);
 }

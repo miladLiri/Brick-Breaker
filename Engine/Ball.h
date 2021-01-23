@@ -23,5 +23,9 @@ public:
 	void resetvx();
 	void wallCollision();
 	void update();
+	int getTop() const;
+	int getBottom() const;
+	int getRight() const;
+	int getLeft() const;
 
 };

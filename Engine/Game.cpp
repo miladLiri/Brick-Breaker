@@ -25,7 +25,8 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	skate(200)
+	skate(200),
+	ball(100,100,4,8)
 {
 }
 
@@ -39,10 +40,12 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	skate.update(wnd);
+	skate.update(wnd,ball);
+	ball.update();
 }
 
 void Game::ComposeFrame()
 {
 	skate.drow(gfx);
+	ball.drow(gfx);
 }

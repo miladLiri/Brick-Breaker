@@ -66,3 +66,23 @@ void Ball::update()
 
 	wallCollision();
 }
+
+int Ball::getTop() const
+{
+	return y - radius;
+}
+
+int Ball::getBottom() const
+{
+	return y + radius;
+}
+
+int Ball::getRight() const
+{
+	return x + radius;
+}
+
+int Ball::getLeft() const
+{
+	return x - radius;
+}
