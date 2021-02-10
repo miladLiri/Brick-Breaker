@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "Vec2.h"
 
 Game::Game( MainWindow& wnd )
 	:
@@ -28,6 +29,12 @@ Game::Game( MainWindow& wnd )
 	skate(200),
 	ball(100,100,4,8)
 {
+
+	Vec2 vec1 = { 2,3 };
+	Vec2 vec2 = { 4,6 };
+	vec2 += vec1;
+
+
 }
 
 void Game::Go()

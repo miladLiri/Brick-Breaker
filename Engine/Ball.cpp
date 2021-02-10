@@ -17,6 +17,21 @@ void Ball::drow(Graphics& gfx) const
 	gfx.DrowCircle(cornerx, cornery, radius, color);
 }
 
+int Ball::accuracyBreaker() const
+{
+	static int useCounter = 0;
+	useCounter++;
+
+	if (useCounter % 2) {
+		return -1;
+	}
+	else
+	{
+		return 1;
+	}
+
+}
+
 void Ball::resetvy()
 {
 	vy = -vy;

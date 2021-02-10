@@ -2,6 +2,7 @@
 
 #include "Graphics.h"
 #include "Colors.h"
+#include <random>
 
 class Ball
 {
@@ -19,6 +20,7 @@ public:
 
 	Ball(int x, int y, int vx, int vy);
 	void drow(Graphics& gfx) const;
+	int accuracyBreaker() const;
 	void resetvy();
 	void resetvx();
 	void wallCollision();
