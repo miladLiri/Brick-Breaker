@@ -27,3 +27,8 @@ bool Rect::checkOverlapping(const Rect& rect) const
 		right > rect.left && left < rect.right ||
 		bottom > rect.top && top < rect.bottom;
 }
+
+Rect Rect::getRect(const Vec2 topLeft, const float width, const float height) const
+{
+	return Rect(topLeft, width, height);
+}

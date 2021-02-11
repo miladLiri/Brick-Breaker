@@ -1,74 +1,57 @@
 #include "Ball.h"
 
-Ball::Ball(int x, int y, int vx, int vy)
+Ball::Ball(Vec2 pos, Vec2 v)
 	:
-	x(x),
-	y(y),
-	vx(vx),
-	vy(vy)
+	pos(pos),
+	v(v)
 {
 }
 
-void Ball::drow(Graphics& gfx) const
+void Ball::draw(Graphics& gfx) const
 {
-	const int cornerx = x - radius;
-	const int cornery = y - radius;
+	const int cornerx = pos.x - radius;
+	const int cornery = pos.y - radius;
 
 	gfx.DrawCircle(cornerx, cornery, radius, color);
 }
 
-int Ball::accuracyBreaker() const
-{
-	static int useCounter = 0;
-	useCounter++;
-
-	if (useCounter % 2) {
-		return -1;
-	}
-	else
-	{
-		return 1;
-	}
-
-}
-
 void Ball::resetvy()
 {
-	vy = -vy;
+	v.y = -v.y;
 }
 
 void Ball::resetvx()
 {
-	vx = -vx;
+	v.x = -v.x;
 }
 
 void Ball::wallCollision()
 {
-	const int top = y - radius;
-	const int bottom = y + radius;
-	const int right = x + radius;
-	const int left = x - radius;
+	const int top = pos.y - radius;
+	const int bottom = pos.y + radius;
+	const int right = pos.x + radius;
+	const int left = pos.x - radius;
 
 	if (top <= 0) 
 	{
-		y = radius;
+		pos.y = radius;
 		resetvy();
 	}
 	else if (left <= 0)
 	{
-		x = radius;
+		pos.x = radius;
 		resetvx();
 	}
 	else if (right >= Graphics::ScreenWidth - 1)
 	{
-		x = Graphics::ScreenWidth - 1 - radius;
+		pos.x = Graphics::ScreenWidth - 1 - radius;
 		resetvx();
 	}
 
 	//test
 	else if (bottom >= Graphics::ScreenHeight -1)
 	{
-		y = Graphics::ScreenHeight - 1 - radius;
+		pos.y = Graphics::ScreenHeight - 1 - radius;
 		resetvy();
 	}
 
@@ -76,28 +59,13 @@ void Ball::wallCollision()
 
 void Ball::update()
 {
-	x += vx;
-	y += vy;
+	pos += v;
 
 	wallCollision();
 }
 
-int Ball::getTop() const
+Rect Ball::getRect() const
 {
-	return y - radius;
+	return Rect(pos - Vec2(radius, radius), pos + Vec2(radius, radius));
 }
 
-int Ball::getBottom() const
-{
-	return y + radius;
-}
-
-int Ball::getRight() const
-{
-	return x + radius;
-}
-
-int Ball::getLeft() const
-{
-	return x - radius;
-}

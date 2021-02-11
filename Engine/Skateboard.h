@@ -3,6 +3,7 @@
 #include "Graphics.h"
 #include "MainWindow.h"
 #include "Ball.h"
+#include "Rect.h"
 
 
 class Skateboard
@@ -10,18 +11,18 @@ class Skateboard
 
 private:
 
-	static constexpr Color mainColor = Colors::Cyan;
-	static constexpr Color secondColor = Colors::Green;
+	static constexpr Color color = Colors::Cyan;
 	static constexpr int height = 20;
-	static constexpr int v = 5;
-	static constexpr int y = Graphics::ScreenHeight - height - 6;
-	int width = 100;
-	int x = 150;
+	static constexpr int width = 100;
+
+	Vec2 v = { 5,0 };
+	Vec2 pos = { 150, Graphics::ScreenHeight - height - 6 };
 
 public:
 
+	Skateboard() = default;
 	Skateboard(const int x);
-	void drow(Graphics& gfx) const;
+	void draw(Graphics& gfx) const;
 	void control(const MainWindow& wnd);
 	void clampScreen();
 	void ballCollision(Ball& ball) const;

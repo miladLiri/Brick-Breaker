@@ -1,44 +1,45 @@
 #include "Skateboard.h"
 
-Skateboard::Skateboard(const int x)
-	:
-	x(x)
+Skateboard::Skateboard(const int in_x)
 {
+	pos.x = in_x;
 }
 
-void Skateboard::drow(Graphics& gfx) const
+void Skateboard::draw(Graphics& gfx) const
 {
-	gfx.DrowRect(x, y, width, height, mainColor);
+	gfx.DrawRect(pos.x, pos.y, width, height, color);
 }
 
 void Skateboard::control(const MainWindow& wnd)
 {
 	if (wnd.kbd.KeyIsPressed(VK_RIGHT)) 
 	{
-		x += v;
+		pos.x += v.x;
 	}
 
 	if (wnd.kbd.KeyIsPressed(VK_LEFT))
 	{
-		x -= v;
+		pos.x -= v.x;
 	}
 }
 
 void Skateboard::clampScreen()
 {
-	if (x <= 0)
+	if (pos.x <= 0)
 	{
-		x = 0;
+		pos.x = 0;
 	}
 
-	if (x + width >= Graphics::ScreenWidth - 1) {
-		x = Graphics::ScreenWidth - width - 1;
+	if (pos.x + width >= Graphics::ScreenWidth - 1) {
+		pos.x = Graphics::ScreenWidth - width - 1;
 	}
 }
 
 void Skateboard::ballCollision(Ball& ball) const
 {
-	if(ball.getBottom() >= y && ball.getLeft() >= x && ball.getRight() <= x + width)
+	Rect ballRect = ball.getRect();
+
+	if(ballRect.bottom >= pos.y && ballRect.left >= pos.x && ballRect.right <= pos.x + width)
 	{
 		ball.resetvy();
 	}

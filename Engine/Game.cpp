@@ -27,14 +27,8 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd ),
 	skate(200),
-	ball(100,100,4,8)
+	ball({ 100,100 }, { 4, 8 })
 {
-
-	Vec2 vec1 = { 2,3 };
-	Vec2 vec2 = { 4,6 };
-	vec2 += vec1;
-
-
 }
 
 void Game::Go()
@@ -53,6 +47,6 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	skate.drow(gfx);
-	ball.drow(gfx);
+	skate.draw(gfx);
+	ball.draw(gfx);
 }

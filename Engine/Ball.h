@@ -2,6 +2,7 @@
 
 #include "Graphics.h"
 #include "Colors.h"
+#include "Rect.h"
 #include <random>
 
 class Ball
@@ -11,23 +12,17 @@ private:
 
 	static constexpr Color color = Colors::Blue;
 	static constexpr int radius = 10;
-	int x; //center.x
-	int y; //center.y
-	int vx;
-	int vy;
+	Vec2 pos;
+	Vec2 v;
 
 public:
 
-	Ball(int x, int y, int vx, int vy);
-	void drow(Graphics& gfx) const;
-	int accuracyBreaker() const;
+	Ball(Vec2 pos, Vec2 v);
+	void draw(Graphics& gfx) const;
 	void resetvy();
 	void resetvx();
 	void wallCollision();
 	void update();
-	int getTop() const;
-	int getBottom() const;
-	int getRight() const;
-	int getLeft() const;
-
+	
+	Rect getRect() const;
 };

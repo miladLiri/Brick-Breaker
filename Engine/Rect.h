@@ -21,5 +21,7 @@ public:
 
 	bool checkOverlapping(const Rect& rect) const;
 
+	Rect getRect(const Vec2 topLeft, const float width, const float height) const;
+
 };
 

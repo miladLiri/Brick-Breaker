@@ -3,12 +3,15 @@
 #include "Colors.h"
 #include "Graphics.h"
 #include "Ball.h"
+#include "Rect.h"
 
 class Brick 
 {
 
 private:
 
-	static constexpr int maxSize = 30;
+	Rect rect;
+	Color color;
+	bool destroyed;
 	
 };
