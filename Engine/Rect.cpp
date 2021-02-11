@@ -9,15 +9,15 @@ Rect::Rect(float top, float bottom, float left, float right)
 {
 }
 
-Rect::Rect(Vec2 topRight, Vec2 bottomLeft)
+Rect::Rect(Vec2 topLeft, Vec2 bottomRight)
 	:
-	Rect(topRight.y, bottomLeft.y, topRight.x, bottomLeft.x)
+	Rect(topLeft.y, bottomRight.y, topLeft.x, bottomRight.x)
 {
 }
 
-Rect::Rect(Vec2 topRight, float width, float height)
+Rect::Rect(Vec2 topLeft, float width, float height)
 	:
-	Rect(topRight, topRight + Vec2(width, height))
+	Rect(topLeft, topLeft + Vec2(width, height))
 {
 }
 

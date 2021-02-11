@@ -240,6 +240,11 @@ Graphics::Graphics( HWNDKey& key )
 		_aligned_malloc( sizeof( Color ) * Graphics::ScreenWidth * Graphics::ScreenHeight,16u ) );
 }
 
+void Graphics::DrawRect(Rect& rect, Color c)
+{
+	DrawRectPos(int(rect.left), int(rect.top), int(rect.right), int(rect.bottom), c);
+}
+
 Graphics::~Graphics()
 {
 	// free sysbuffer memory (aligned free)
@@ -316,7 +321,7 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
-void Graphics::DrowRect(int x, int y, int width, int height, Color c)
+void Graphics::DrawRect(int x, int y, int width, int height, Color c)
 {
 	assert(x >= 0);
 	assert(x < int(Graphics::ScreenWidth));
@@ -332,12 +337,12 @@ void Graphics::DrowRect(int x, int y, int width, int height, Color c)
 	}
 }
 
-void Graphics::DrowRectPos(int x0, int y0, int x1, int y1, Color c)
+void Graphics::DrawRectPos(int x0, int y0, int x1, int y1, Color c)
 {
-	DrowRect(x0, y0, abs(x1 - x0), abs(y1 - y0), c);
+	DrawRect(x0, y0, abs(x1 - x0), abs(y1 - y0), c);
 }
 
-void Graphics::DrowCircle(int x, int y, int r, Color c)
+void Graphics::DrawCircle(int x, int y, int r, Color c)
 {
 	assert(x >= 0);
 	assert(x < int(Graphics::ScreenWidth));

@@ -14,7 +14,7 @@ void Ball::drow(Graphics& gfx) const
 	const int cornerx = x - radius;
 	const int cornery = y - radius;
 
-	gfx.DrowCircle(cornerx, cornery, radius, color);
+	gfx.DrawCircle(cornerx, cornery, radius, color);
 }
 
 int Ball::accuracyBreaker() const
