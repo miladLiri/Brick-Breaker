@@ -13,9 +13,9 @@ private:
 
 	static constexpr Color color = Colors::Cyan;
 	static constexpr int height = 20;
-	static constexpr int width = 100;
+	static constexpr int width = 150;
 
-	Vec2 v = { 5,0 };
+	Vec2 v = { 10,0 };
 	Vec2 pos = { 150, Graphics::ScreenHeight - height - 6 };
 
 public:
@@ -27,7 +27,5 @@ public:
 	void clampScreen();
 	void ballCollision(Ball& ball) const;
 	void update(const MainWindow& wnd, Ball& ball);
-
-
 
 };

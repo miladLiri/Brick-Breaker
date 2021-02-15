@@ -21,14 +21,19 @@ Rect::Rect(Vec2 topLeft, float width, float height)
 {
 }
 
-bool Rect::checkOverlapping(const Rect& rect) const
+bool Rect::checkOverlapping(const Rect& other) const
 {
 	return
-		right > rect.left && left < rect.right ||
-		bottom > rect.top && top < rect.bottom;
+		left >= other.left && 
+		right <= other.right &&
+		top >= other.top && 
+		bottom <= other.bottom;
 }
 
-Rect Rect::getRect(const Vec2 topLeft, const float width, const float height) const
+Rect Rect::getRect(const Vec2 center, const float width, const float height)
 {
-	return Rect(topLeft, width, height);
+	const Vec2 half(width, height);
+	return Rect(center - half, center + half);
 }
+
+

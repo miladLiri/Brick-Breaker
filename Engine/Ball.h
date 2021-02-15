@@ -23,6 +23,7 @@ public:
 	void resetvx();
 	void wallCollision();
 	void update();
+	bool checkBaseCollision();
 	
 	Rect getRect() const;
 };

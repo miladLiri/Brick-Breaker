@@ -27,32 +27,27 @@ void Ball::resetvx()
 
 void Ball::wallCollision()
 {
-	const int top = pos.y - radius;
-	const int bottom = pos.y + radius;
-	const int right = pos.x + radius;
-	const int left = pos.x - radius;
 
-	if (top <= 0) 
+	Rect ball = getRect();
+
+	if (ball.top <= 0) 
 	{
-		pos.y = radius;
+		pos.y = radius + 1;
 		resetvy();
 	}
-	else if (left <= 0)
+	else if (ball.left <= 0)
 	{
-		pos.x = radius;
+		pos.x = radius + 1;
 		resetvx();
 	}
-	else if (right >= Graphics::ScreenWidth - 1)
+	else if (ball.right >= Graphics::ScreenWidth - 1)
 	{
 		pos.x = Graphics::ScreenWidth - 1 - radius;
 		resetvx();
 	}
-
-	//test
-	else if (bottom >= Graphics::ScreenHeight -1)
+	else if (ball.bottom >= Graphics::ScreenHeight - 1)
 	{
 		pos.y = Graphics::ScreenHeight - 1 - radius;
-		resetvy();
 	}
 
 }
@@ -64,8 +59,20 @@ void Ball::update()
 	wallCollision();
 }
 
+bool Ball::checkBaseCollision()
+{
+	Rect ball = getRect();
+
+	if (ball.bottom >= Graphics::ScreenHeight - 1)
+	{
+		pos.y = Graphics::ScreenHeight - 1 - radius;
+		return true;
+	}
+	return false;
+}
+
 Rect Ball::getRect() const
 {
-	return Rect(pos - Vec2(radius, radius), pos + Vec2(radius, radius));
+	return Rect::getRect(pos, radius, radius);
 }
 
